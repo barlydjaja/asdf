@@ -8,7 +8,7 @@ const Header = () => {
             <div className="navigation__logo">
                 <img src={wiketLogo} alt="wiket_logo"/>
             </div>
-            <div className="navigation__bar">
+            <div className="navigation__bar flex-align-center">
                 <div className="navigation__bar--hide-mobile">
                     <ul>
                         <li>Benefits</li>
@@ -17,7 +17,7 @@ const Header = () => {
                         <li>Plans &#38; Pricing</li>
                     </ul>
                 </div>
-                <div className="navigation__bar--show-mobile">
+                <div className="navigation__bar--show-mobile flex-align-center flex-justify-center">
                     Get started
                 </div>
             </div>
