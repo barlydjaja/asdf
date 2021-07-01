@@ -1,0 +1,41 @@
+@font-face {
+  font-family: "Faible-Bold";
+  src: local("Faible-Bold"),
+    url(../../assets/fonts/Faible/Faible-Bold.woff) format("woff");
+}
+
+.navigation {
+  padding-top: 2em;
+  color: #004e4c;
+  font-family: "Faible-Bold";
+
+  .navigation__bar {
+    .navigation__bar--hide-mobile {
+      float: left;
+      ul {
+        display: flex;
+        justify-content: space-around;
+        list-style: none;
+
+        li {
+          margin-right: 3.375em;
+          font-size: 17px;
+        }
+      }
+    }
+
+    .navigation__bar--show-mobile {
+      display: inline;
+      float: right;
+      
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .navigation__bar {
+    .navigation__bar--hide-mobile {
+      display: none;
+    }
+  }
+}
