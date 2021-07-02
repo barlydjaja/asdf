@@ -1,22 +1,27 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
-const useOnScreen = (ref) => {
-  const [isIntersecting, setIsIntersecting] = useState(false);
+const IntersectionObserver = ({ root = null, rootMargin, threshold = 0 }) => {
+  const [entry, updateEntry] = useState({});
+  const [node, setNode] = useState(null);
 
-  const observer = new IntersectionObserver((entries) =>
-    entries.forEach((entry) => {
-      setIsIntersecting(entry.isIntersecting);
+  const observer = useRef(
+    new window.IntersectionObserver(([entry]) => updateEntry(entry), {
+      root,
+      rootMargin,
+      threshold,
     })
   );
 
   useEffect(() => {
-    observer.observe(ref.current);
-    return () => {
-      observer.disconnect();
-    };
-  }, [1]);
+    const { current: currentObserver } = observer;
+    currentObserver.disconnect();
 
-  return isIntersecting;
+    if (node) currentObserver.observe(node);
+
+    return () => currentObserver.disconnect();
+  }, [node]);
+
+  return [setNode, entry];
 };
 
-export default useOnScreen;
+export default IntersectionObserver;

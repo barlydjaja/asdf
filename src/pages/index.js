@@ -1,6 +1,6 @@
 import { motion, useAnimation } from "framer-motion";
-import React, { useState, useEffect, useRef } from "react";
-import useOnScreen from "../helper/intersectionObserver";
+import React, { useState, useEffect } from "react";
+import useIntersect from "../helper/intersectionObserver";
 
 import "./index.scss";
 import floristImg from "../assets/images/jpg/header-img-florist.jpg";
@@ -14,8 +14,7 @@ import headerLinePhone from "../assets/images/svg/header-line-phone-portrait.svg
 
 function App() {
   const [screenSize, setScreenSize] = useState(window.innerWidth);
-  const ref = useRef();
-  const onScreen = useOnScreen(ref);
+  const [ref, entry] = useIntersect({});
   const control = useAnimation();
 
   const contentLeftMainCard = {
@@ -101,7 +100,7 @@ function App() {
       opacity: 1,
       transition: {
         duration: 1,
-        delay: 2,
+        delay: screenSize > 768 ? 2 : 0.5,
       },
     },
   };
@@ -110,10 +109,10 @@ function App() {
     window.onresize = () => {
       setScreenSize(window.innerWidth);
     };
-    if (onScreen) {
+    if (entry.isIntersecting) {
       control.start("show");
     }
-    if (!onScreen) {
+    if (!entry.isIntersecting) {
       control.start("hidden");
     }
   });
@@ -176,13 +175,20 @@ function App() {
                 />
               </div>
             </motion.div>
-            <div className="mobile-view-bg-img">
+
+            <motion.div
+              variants={contentRest}
+              ref={ref}
+              animate={control}
+              initial="hidden"
+              className="mobile-view-bg-img"
+            >
               <img
                 src={headerLinePhone}
                 alt="line-img-mobile"
                 className="mobile-line-img"
               />
-            </div>
+            </motion.div>
 
             <img src={floristImg} alt="floristImg" className="main-img" />
             <div className="text-box">
