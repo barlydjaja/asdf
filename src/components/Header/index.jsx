@@ -20,6 +20,11 @@ const Header = () => {
                 <div className="navigation__bar--show-mobile flex-align-center flex-justify-center">
                     Get started
                 </div>
+                <div className="navigation__bar--mobile">
+                    <div className="line1"></div>
+                    <div className="line2"></div>
+                    <div className="line3"></div>
+                </div>
             </div>
         </div>
      );

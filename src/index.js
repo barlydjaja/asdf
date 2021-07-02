@@ -6,11 +6,9 @@ import Header from "./components/Header";
 
 ReactDOM.render(
   <React.StrictMode>
-    <div className="background">
-      <div className="container">
-        <Header />
-        <Index />
-      </div>
+    <div className="container">
+      <Header />
+      <Index />
     </div>
   </React.StrictMode>,
   document.getElementById("root")
