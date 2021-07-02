@@ -36,7 +36,7 @@ const Header = () => {
       animate="show"
       className={"navigation flex-justify-between flex-align-center"}
       style={{
-        backgroundColor: isScrolled ? "#ffffff" : "",
+        backgroundColor: isScrolled && screenSize < 768 ? "beige" : "",
         transition: "all 0.5s ease-in",
       }}
     >
